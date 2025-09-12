@@ -19,13 +19,11 @@ y = df["Weight"]    # weight is dependent variable
 model = LinearRegression()
 model.fit(X, y)
 
-# Step 5: Make predictions
+# Step 5: Make predictions for dataset
 df["Predicted_Weight"] = model.predict(X)
-
-# Step 6: Display results
 print(df)
 
-# Step 7: Plot the regression line
+# Step 6: Plot the regression line
 plt.scatter(X, y, color="blue", label="Actual Weight")
 plt.plot(X, df["Predicted_Weight"], color="red", label="Regression Line")
 plt.xlabel("Height (cm)")
@@ -33,3 +31,9 @@ plt.ylabel("Weight (kg)")
 plt.title("Linear Regression: Weight vs Height")
 plt.legend()
 plt.show()
+
+# Step 7: User input for new height
+new_height = float(input("Enter a height in cm: "))   # user types a value
+predicted_weight = model.predict([[new_height]])
+
+print(f"Predicted weight for height {new_height:.1f} cm: {predicted_weight[0]:.2f} kg")
